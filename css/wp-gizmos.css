@@ -1,0 +1,21 @@
+.postbox .inside .form-wrap {
+background:linear-gradient(to top, #F5F5F5, #F9F9F9) repeat scroll 0 0 #F5F5F5;
+border: 1px solid #DFDFDF;
+border-radius: 3px 3px 3px 3px;
+box-shadow: 0 1px 0 #FFFFFF inset;
+margin:5px 0 10px;
+}
+.postbox .inside .closed .form-field {
+display:none;
+}
+.postbox .inside .form-field {
+padding-left:5px;
+}
+.postbox .inside .handlediv {
+position: relative;
+top: -6px;
+}
+.form-wrap h3 i {
+font-size:75%;
+padding-left:5px;
+}
