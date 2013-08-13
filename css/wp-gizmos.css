@@ -19,3 +19,11 @@ top: -6px;
 font-size:75%;
 padding-left:5px;
 }
+
+/* Tweaks for a WYSIWYG as Gizmo */
+.quicktags-toolbar input {
+width:auto;
+}
+.postbox .wp-editor-container {
+background-color:#fff;
+}
