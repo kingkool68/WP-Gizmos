@@ -69,7 +69,7 @@ class WP_Gizmo {
 			wp_enqueue_style( 'wp-gizmos', plugins_url( 'css/wp-gizmos.css', __FILE__ ), array(), 1.0, 'all' );
 			wp_enqueue_script( 'wp-gizmos', plugins_url( 'js/wp-gizmos.js', __FILE__ ), array('jquery', 'jquery-ui-sortable'), 1.0, TRUE );
 			
-			wp_enqueue_media( array( 'post' => $post_type ) );
+			wp_enqueue_media();
 			
 			add_action( 'add_meta_boxes', array( $this, 'add_metabox') );
 			add_action( 'save_post', array( $this, 'save_metabox'), 10, 2 );	
@@ -175,7 +175,7 @@ class WP_Gizmo {
 	// Convenience function for constructing field names for the admin.  
 	public function get_field_name($field_name = FALSE) {
 		$base = 'wp-gizmos[' . $this->field_name . '][' . $this->num . ']';
-		if( $fieldname === FALSE ) {
+		if( $field_name === FALSE ) {
 			return $base;
 		}
 		
@@ -321,4 +321,4 @@ function go_go_WP_Gizmo_go() {
 	//Other gizmos can now extend the WP_Gizmo class.
 	do_action( 'gizmo_init' );
 }
-add_action('plugins_loaded', 'go_go_WP_Gizmo_go');
+add_action('plugins_loaded', 'go_go_WP_Gizmo_go');loaded', 'go_go_WP_Gizmo_go');
