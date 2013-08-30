@@ -148,7 +148,7 @@ class WP_Gizmo {
 		
 		if( isset($_REQUEST['wp-gizmos']) ) {
 			//Loop over each Gizmo data, verify, and reindex the array before inserting it into the post_meta table.
-			$gizmos = $this->get_gizmos($post_id);
+			$gizmos = array();
 			
 			foreach( $_REQUEST['wp-gizmos'] as $key => $gizmo ) {
 				$gizmos[$key] = $this->reindex_array( $gizmo );
@@ -252,7 +252,7 @@ class WP_Gizmo {
 		
 		$gizmos = get_post_meta( $post_id, 'wp-gizmos', true );
 		
-		if( !$gizmos ) {
+		if( !$gizmos || ( !isset( $gizmos[$key] ) && $key !== -1 ) ) {
 			return array();
 		}
 		
@@ -268,6 +268,10 @@ class WP_Gizmo {
 		
 		$gizmos = $this->get_gizmos($post_id);
 		$gizmo_data = $gizmos[ $this->field_name ];
+		
+		if( !$gizmo_data ) {
+			return;
+		}
 		
 		$count = 0;
 		foreach( $gizmo_data as $gizmo ) {
@@ -321,4 +325,4 @@ function go_go_WP_Gizmo_go() {
 	//Other gizmos can now extend the WP_Gizmo class.
 	do_action( 'gizmo_init' );
 }
-add_action('plugins_loaded', 'go_go_WP_Gizmo_go');loaded', 'go_go_WP_Gizmo_go');
+add_action('plugins_loaded', 'go_go_WP_Gizmo_go');
