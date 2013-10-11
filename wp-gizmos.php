@@ -325,4 +325,4 @@ function go_go_WP_Gizmo_go() {
 	//Other gizmos can now extend the WP_Gizmo class.
 	do_action( 'gizmo_init' );
 }
-add_action('plugins_loaded', 'go_go_WP_Gizmo_go');
+add_action('widgets_init', 'go_go_WP_Gizmo_go');
