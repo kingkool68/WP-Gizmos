@@ -2,7 +2,7 @@
 /*
 Plugin Name: Wp Gizmos
 Description: Go go WP Gizmos go!
-Version: 0.1
+Version: 0.1.1
 Author: Russell Heimlich
 Author URI: http://www.russellheimlich.com
 */
@@ -29,10 +29,6 @@ class WP_Gizmo {
 	// Which post types should we show WP Gizmos in?
 	public function post_types() {
 		return array( 'post' );
-	}
-	
-	public function admin_enqueue_scripts() {
-		
 	}
 	
 	public function pre_metabox() {
@@ -66,14 +62,17 @@ class WP_Gizmo {
 		}
 		
 		if( in_array( $post_type, $this->post_types() ) ) {
-			wp_enqueue_style( 'wp-gizmos', plugins_url( 'css/wp-gizmos.css', __FILE__ ), array(), 1.0, 'all' );
-			wp_enqueue_script( 'wp-gizmos', plugins_url( 'js/wp-gizmos.js', __FILE__ ), array('jquery', 'jquery-ui-sortable'), 1.0, TRUE );
-			
-			wp_enqueue_media();
-			
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts') );
 			add_action( 'add_meta_boxes', array( $this, 'add_metabox') );
 			add_action( 'save_post', array( $this, 'save_metabox'), 10, 2 );	
 		}
+	}
+	
+	public function admin_enqueue_scripts() {
+		wp_enqueue_style( 'wp-gizmos', plugins_url( 'css/wp-gizmos.css', __FILE__ ), array(), 1.0, 'all' );
+		wp_enqueue_script( 'wp-gizmos', plugins_url( 'js/wp-gizmos.js', __FILE__ ), array('jquery', 'jquery-ui-sortable'), 1.0, TRUE );
+			
+		wp_enqueue_media();
 	}
 	
 	public function add_metabox( $post_type ) {
@@ -130,7 +129,6 @@ class WP_Gizmo {
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 			return $post_id;
 		}
-		
 		
 		if( defined('DOING_AJAX') && DOING_AJAX ) {
 			return $post_id;
@@ -325,4 +323,4 @@ function go_go_WP_Gizmo_go() {
 	//Other gizmos can now extend the WP_Gizmo class.
 	do_action( 'gizmo_init' );
 }
-add_action('widgets_init', 'go_go_WP_Gizmo_go');
+add_action('plugins_loaded', 'go_go_WP_Gizmo_go');
