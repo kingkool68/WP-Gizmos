@@ -2,7 +2,7 @@
 /*
 Plugin Name: Wp Gizmos
 Description: Go go WP Gizmos go!
-Version: 0.1.1
+Version: 0.1.2
 Author: Russell Heimlich
 Author URI: http://www.russellheimlich.com
 */
@@ -323,4 +323,4 @@ function go_go_WP_Gizmo_go() {
 	//Other gizmos can now extend the WP_Gizmo class.
 	do_action( 'gizmo_init' );
 }
-add_action('plugins_loaded', 'go_go_WP_Gizmo_go');
+add_action('init', 'go_go_WP_Gizmo_go');
