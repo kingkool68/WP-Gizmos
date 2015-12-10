@@ -2,7 +2,7 @@
 /*
 Plugin Name: Wp Gizmos
 Description: Go go WP Gizmos go!
-Version: 0.1.2
+Version: 0.1.3
 Author: Russell Heimlich
 Author URI: http://www.russellheimlich.com
 */
@@ -187,7 +187,7 @@ class WP_Gizmo {
 		}
 	?>
 		<div class="form-wrap closed">
-			<h3><?php echo $type;?> <div title="Click to toggle" class="handlediv"><br></div></h3>
+			<h3 class="hndle"><?php echo $type;?> <div title="Click to toggle" class="handlediv"><span class="toggle-indicator" aria-hidden="true"></span></div></h3>
 			<div class="form-field">
 	<?php
 	}
